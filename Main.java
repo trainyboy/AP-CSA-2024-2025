@@ -1,3 +1,4 @@
+import java.math.BigInteger;
 import java.util.*;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -64,10 +65,17 @@ public class Main {
     }
     static void problem1b_sumdigits(){
         Scanner in = new Scanner(System.in);
-        System.out.println("Enter a positive, three-digit number: ");
-        int num = in.nextInt();
-        int sum = num%10+(num/10)%10+(num/100)%10;
-        System.out.println("The sum of the digits in "+num+" is "+sum);
+        System.out.println("Enter a positive number: ");
+        BigInteger num = in.nextBigInteger();
+        BigInteger sum = new BigInteger("0");
+        BigInteger originalNum = num;
+
+        //long sum = num%10+(num/10)%10+(num/100)%10;
+        while(num.compareTo(BigInteger.ZERO)>0){
+            sum = sum.add(num.mod(BigInteger.TEN));
+            num = num.divide(BigInteger.TEN);
+        }
+        System.out.println("The sum of the digits in "+originalNum+" is "+sum);
     }
     public static void main(String[] args) {
         //problem1b_temp();
